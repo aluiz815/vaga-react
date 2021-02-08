@@ -1,10 +1,13 @@
 import React from 'react';
 import { AuthProvider } from './Auth';
+import { CartProvider } from './Cart';
 
 const AppProvider= ({ children }) => (
-      <AuthProvider>
-        {children}
-      </AuthProvider>
+  <CartProvider>
+    <AuthProvider>
+      {children}
+    </AuthProvider>
+  </CartProvider>
 );
 
 export default AppProvider;

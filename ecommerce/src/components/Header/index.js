@@ -2,7 +2,9 @@ import { Link } from 'react-router-dom';
 import './styles.css';
 import Logo from '../../assets/logo.png'
 import { useAuth } from '../../Context/Auth';
+import { useCart } from '../../Context/Cart';
 const Header = ({hideCart }) => {
+  const {products} = useCart()
   const {user,signOut} = useAuth()
   const openDrawer = () => {
     const event = new CustomEvent('openCart');
@@ -21,7 +23,7 @@ const Header = ({hideCart }) => {
           onClick={() => openDrawer()}
           className="btn h-25 btn-secondary mr-4"
         >
-          <span className="mdi mdi-cart"></span> 5 Ítens
+          <span className="mdi mdi-cart"></span> {products.length} Ítens
         </button>
       )}
         {user &&(

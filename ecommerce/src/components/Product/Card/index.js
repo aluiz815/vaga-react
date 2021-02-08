@@ -1,14 +1,14 @@
 import './styles.css';
 import {Link} from 'react-router-dom'
-import { useState } from 'react';
+import {useCart} from '../../../Context/Cart'
 const Product = ({ product }) => {
-  const [products,setProducts] = useState()
-  const added = false;
+  const {products,toggleProductToCart} = useCart()
+  const added = products.findIndex((p) => p.id === product.id) !== -1;
   return (
     <div className="product col-3">
       <img src={product?.productImg} className="img-fluid align-center" alt="product" />
       <button
-        onClick={() =>{}}
+        onClick={() =>toggleProductToCart({product})}
         className={`btn btn-${added ? 'secondary' : 'primary'} rounded-circle`}
       >
         {added ? '-' : '+'}

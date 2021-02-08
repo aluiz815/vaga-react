@@ -1,8 +1,8 @@
 
 import './styles.css';
-
+import {useCart} from '../../../Context/Cart'
 const Product = ({ product }) => {
-
+  const {toggleProductToCart} = useCart()
   return (
     <div className="product-list col-12">
       <div className="row">
@@ -21,7 +21,7 @@ const Product = ({ product }) => {
         </div>
         <div className="col-3">
           <button
-            onClick={() =>{}}
+            onClick={() =>toggleProductToCart({product})}
             className="btn btn-secondary rounded-circle"
           >
             -

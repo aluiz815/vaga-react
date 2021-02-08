@@ -2,12 +2,17 @@ import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Dock from 'react-dock';
 import './styles.css';
-
+import { useCart } from '../../Context/Cart';
+import { useAuth } from '../../Context/Auth';
+import Product from '../Product/List'  
 const Sidebar = () => {
   const history = useHistory();
   const [opened, setOpened] = useState(false);
-  const [products,setProducts] = useState()
-  const [user,setUser] = useState()
+  const {products} = useCart()
+  const {user} = useAuth()
+  const total = products.reduce((total, product) => {
+    return total + Number(product.price);
+  }, 0);
   useEffect(() => {
     window.addEventListener('openCart', () => {
       setOpened(true);
@@ -23,16 +28,18 @@ const Sidebar = () => {
       position="right"
     >
       <div className="container-fluid h-100 pt-4 sidebar">
-        <h5>Minha Sacola (5)</h5>
+        <h5>Minha Sacola ({products.length})</h5>
 
         <div className="row products">
-          {console.log(products)}
+        {products.map((p) => (
+            <Product product={p} />
+          ))}
         </div>
 
         <div className="row align-items-end footer">
           <div className="col-12 d-flex justify-content-between align-items-center">
             <b className="d-inline-block">Total</b>
-            <h3 className="d-inline-block">R$ 5</h3>
+            <h3 className="d-inline-block">R$ {total}</h3>
           </div>
           <button
             onClick={() => {user ? history.push('/checkout') : history.push('/register')}}
