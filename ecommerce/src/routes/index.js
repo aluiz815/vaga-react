@@ -6,18 +6,21 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Product from '../pages/Product';
 import Checkout from '../pages/Checkout';
+import AppProvider from '../Context/index';
 const Routes = () => {
   return (
-        <Router>
-          <Switch>
-            <Route path="/" exact component={Home}/>
-            <Route path="/product/:id"  component={Product}/>
-            <Route path="/login"  component={Login}/>
-            <Route path="/register"  component={Register}/>
-            <Route path="/checkout"  component={Checkout}/>
-          </Switch>
-          <Sidebar />
-        </Router>
+        <AppProvider>
+          <Router>
+            <Switch>
+              <Route path="/" exact component={Home}/>
+              <Route path="/product/:id"  component={Product}/>
+              <Route path="/login"  component={Login}/>
+              <Route path="/register"  component={Register}/>
+              <Route path="/checkout"  component={Checkout}/>
+            </Switch>
+            <Sidebar />
+          </Router>
+        </AppProvider>
   );
 };
 
