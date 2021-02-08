@@ -3,16 +3,22 @@ import {Link} from 'react-router-dom';
 import Header from '../../components/Header';
 import Illustration from '../../assets/illustration.png';
 import api from '../../services/api'
+import {toast} from 'react-toastify'
 const Cadastro = () => {
   const [name, setName] = useState()
   const [username, setUsername] = useState()
   const [password, setPassword] = useState()
   const handleSubmit = useCallback(async ()=>{
-    await api.post('/users',{
-      name,
-      username,
-      password,
-    })
+    try {
+      await api.post('/users',{
+        name,
+        username,
+        password,
+      })
+      toast.success('Usuario Cadastrado Com Sucesso')
+    } catch (error) {
+      toast.error('Error ao cadastrar Usuario')
+    }
   },[name,username,password])
   return (
     <div className="h-100 bg-primary ">
