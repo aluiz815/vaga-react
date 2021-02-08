@@ -5,6 +5,7 @@ import Sidebar from '../components/Sidebar';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Product from '../pages/Product';
+import Checkout from '../pages/Checkout';
 const Routes = () => {
   return (
         <Router>
@@ -13,6 +14,7 @@ const Routes = () => {
             <Route path="/product/:id"  component={Product}/>
             <Route path="/login"  component={Login}/>
             <Route path="/register"  component={Register}/>
+            <Route path="/checkout"  component={Checkout}/>
           </Switch>
           <Sidebar />
         </Router>

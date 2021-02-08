@@ -1,9 +1,8 @@
 
-import { useCart } from '../../../hooks/Cart';
 import './styles.css';
 
 const Product = ({ product }) => {
-   const {toggleProductToCart} = useCart()
+
   return (
     <div className="product-list col-12">
       <div className="row">
@@ -22,7 +21,7 @@ const Product = ({ product }) => {
         </div>
         <div className="col-3">
           <button
-            onClick={() =>toggleProductToCart({product})}
+            onClick={() =>{}}
             className="btn btn-secondary rounded-circle"
           >
             -
