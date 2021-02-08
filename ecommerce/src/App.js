@@ -1,6 +1,8 @@
+import './styles/global.css';
+import Routes from './routes'
 function App() {
   return (
-    <h1>Inicio</h1>
+    <Routes/>
   );
 }
 
