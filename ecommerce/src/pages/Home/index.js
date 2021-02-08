@@ -1,6 +1,7 @@
 import { useEffect,useState } from 'react';
 import Header from '../../components/Header';
 import axios from '../../services/api'
+import Product from '../../components/Product/Card'
 const Products = () => {
   const [products,setProducts]=useState()
   
@@ -20,7 +21,9 @@ const Products = () => {
             <h3 className="text-center">Produtos</h3>
             <br />
             <div className="row">
-              {console.log(products)}
+            {products?.map((p) => (
+                <Product key={p.id} product={p} />
+            ))}
             </div>
           </div>
         </div>
