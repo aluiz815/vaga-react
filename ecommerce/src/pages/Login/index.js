@@ -13,7 +13,7 @@ const Login = () => {
       <Header hideCart />
       <div className="row">
         <div className="col-6 text-right my-auto">
-          <img src={Illustration} className="img-fluid" />
+          <img src={Illustration} className="img-fluid" alt="Login" />
         </div>
         <div className="col-6">
           <div className="box col-8">

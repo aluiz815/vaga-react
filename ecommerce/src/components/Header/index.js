@@ -14,7 +14,7 @@ const Header = ({hideCart }) => {
     <div className="col-12 bg-dark w-100 d-flex justify-content-between align-items-center ">
       <header className="py-4 px-4 text-center d-flex justify-content-center  align-items-center">
         <Link className="w-25" to="/">
-          <img src={Logo} className="img-fluid" /> 
+          <img src={Logo} className="img-fluid" alt="logo"/> 
         </Link>
       </header>
       <div className="d-flex align-items-center">
@@ -29,7 +29,7 @@ const Header = ({hideCart }) => {
         {user &&(
           <>
           <div className="d-flex align-items-center">
-            <img src={user.user.avatar} className="rounded-circle avatar-img" />
+            <img src={user.user.avatar} className="rounded-circle avatar-img" alt="avatar" />
             <p className="ml-4 text-white mt-3">{user.user.name}</p>
             <button onClick={()=> signOut()} className="ml-4 btn btn btn-lg btn-secondary">Logout</button>
           </div>
