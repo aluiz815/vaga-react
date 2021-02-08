@@ -33,6 +33,15 @@
 
 - The backend was create using mockapi.io
 
+# App Routes
+
+- [x] /
+- [x] /product/:id
+- [x] /login
+- [x] /register
+- [x] /checkout
+- [x] /success
+
 # Developed By 
 <teste>developed with 💜 by André Luiz </teste>
 
