@@ -1,9 +1,13 @@
 import Header from '../../components/Header';
 import Product from '../../components/Product/List';
+import { useCart } from '../../Context/Cart';
 import './styles.css';
 
 const Checkout = () => {
-
+  const {products} = useCart()
+  const total = products.reduce((total, product) => {
+    return total + Number(product.price);
+  }, 0);
   return (
     <div className="h-100">
       <Header hideCart />
@@ -107,7 +111,7 @@ const Checkout = () => {
             <div className="row mt-4">
               <div className="col-12 d-flex justify-content-between align-items-center">
                 <b>Total</b>
-                <h3>R$ 5</h3>
+                <h3>R$ {total}</h3>
               </div>
               <div className="col-12">
                 <button
@@ -121,10 +125,12 @@ const Checkout = () => {
           </div>
           <div className="col-6">
             <div className="box col mb-4 box-sidebar">
-              <h4>Minha Sacola (5)</h4>
+              <h4>Minha Sacola ({products.length})</h4>
 
               <div className="row products">
-                
+              {products.map((p) => (
+                  <Product product={p} />
+                ))}
               </div>
             </div>
           </div>
