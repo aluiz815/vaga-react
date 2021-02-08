@@ -35,7 +35,7 @@ const Sidebar = () => {
             <h3 className="d-inline-block">R$ 5</h3>
           </div>
           <button
-            onClick={() => {user ? history.push('/checkout') : history.push('/cadastro')}}
+            onClick={() => {user ? history.push('/checkout') : history.push('/register')}}
             className="btn btn-block btn-lg btn-primary rounded-0 h-50 align-items-center"
           >
             Finalizar Compra
