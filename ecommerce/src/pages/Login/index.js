@@ -3,10 +3,11 @@ import {Link} from 'react-router-dom';
 import Header from '../../components/Header';
 import Illustration from '../../assets/illustration.png';
 import './styles.css';
+import {useAuth} from '../../Context/Auth'
 const Login = () => {
   const [username, setUsername] = useState()
   const [password, setPassword] = useState()
-
+  const {signIn} = useAuth()
   return (
     <div className="h-100 bg-primary">
       <Header hideCart />
@@ -36,7 +37,7 @@ const Login = () => {
             />
 
             <Link
-              onClick={()=>{}}
+              onClick={()=>signIn({username,password})}
               to="/"
               className="btn btn-lg btn-block btn-secondary"
             >

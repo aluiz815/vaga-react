@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import './styles.css';
 import Logo from '../../assets/logo.png'
-import { useState } from 'react';
+import { useAuth } from '../../Context/Auth';
 const Header = ({hideCart }) => {
-  const [user,setUser] = useState()
+  const {user,signOut} = useAuth()
   const openDrawer = () => {
     const event = new CustomEvent('openCart');
     window.dispatchEvent(event);
@@ -27,9 +27,9 @@ const Header = ({hideCart }) => {
         {user &&(
           <>
           <div className="d-flex align-items-center">
-            <img src="/" className="rounded-circle avatar-img" />
-            <p className="ml-4 text-white mt-3">Andre</p>
-            <button onClick={()=> {}} className="ml-4 btn btn btn-lg btn-secondary">Logout</button>
+            <img src={user.user.avatar} className="rounded-circle avatar-img" />
+            <p className="ml-4 text-white mt-3">{user.user.name}</p>
+            <button onClick={()=> signOut()} className="ml-4 btn btn btn-lg btn-secondary">Logout</button>
           </div>
           </>
         )} 
