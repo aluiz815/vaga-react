@@ -22,7 +22,7 @@ const Product = ({ product }) => {
         <div className="col-3">
           <button
             onClick={() =>toggleProductToCart({product})}
-            className="btn btn-secondary rounded-circle"
+            className="btn px-3 py-2 btn-secondary rounded-circle"
           >
             -
           </button>
