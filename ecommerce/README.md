@@ -9,7 +9,7 @@
 
 # Live Version
 
-rockapp.andredeveloper.com.br
+http://rockapp.andredeveloper.com.br/
 
 
 # FRONTEND Technologies
