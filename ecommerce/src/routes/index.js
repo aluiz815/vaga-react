@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Switch} from 'react-router-dom';
 import '../styles/global.css';
+import { ToastContainer } from "react-toastify";
 import Home from '../pages/Home';
 import Sidebar from '../components/Sidebar';
 import Notfound from '../pages/Notfound';
@@ -24,6 +25,7 @@ const Routes = () => {
               <Route path="*" component={Notfound}/>
             </Switch>
             <Sidebar />
+            <ToastContainer autoClose={3000}/>
           </Router>
         </AppProvider>
   );

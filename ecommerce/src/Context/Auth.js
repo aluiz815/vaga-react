@@ -1,5 +1,6 @@
 import React, { createContext, useCallback, useContext, useState } from 'react';
 import api from '../services/api';
+import { toast } from "react-toastify";
 const authContext = createContext({});
 
 const AuthProvider= ({ children }) => {
@@ -12,18 +13,29 @@ const AuthProvider= ({ children }) => {
     return;
   });
   const signIn = useCallback(async ({ username, password }) => {
-    const response = await api.get(`/users?username=${username}&password=${password}`);
+    try {
+      const response = await api.get(`/users?username=${username}&password=${password}`);
     const { token,name,avatar} =response.data[0]
     const user = {name,avatar}
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
     setData({ token, user });
+    toast.success('Usuario Autenticado Com Sucesso')
+    } catch (error) {
+      toast.error("Falha na autenticacao, verifique seus dados");
+    }
   }, []);
 
   const signOut = useCallback(() => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    setData();
+    try {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      setData();
+      toast.success("Usuario Desconectado Com Sucesso");
+    } catch (error) {
+      toast.error("Falha no Logout");
+    }
+    
   }, []);
   return (
     <authContext.Provider value={{ signIn, user:data, signOut }}>

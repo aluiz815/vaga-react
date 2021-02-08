@@ -1,13 +1,38 @@
+import { useCallback, useState } from 'react';
 import Header from '../../components/Header';
 import Product from '../../components/Product/List';
 import { useCart } from '../../Context/Cart';
 import './styles.css';
-
+import {toast} from 'react-toastify'
+import {useHistory} from 'react-router-dom'
 const Checkout = () => {
+  // Nos podemos usar o unform junto com yup para validacao e realizar o pedido, iria ficar bem mais simples e
+  // bem mais legivel
+  const  history = useHistory()
   const {products} = useCart()
+  const [cep,setCep] = useState()
+  const [city,setCity] = useState()
+  const [logradouro,setLogradouro] = useState()
+  const [number,setNumber] = useState()
+  const [neighborhood,setNeighborhood] = useState()
+  const [uf,setUf] = useState()
+  const [cardNumber,setCardNumber] = useState()
+  const [cardName,setCardName] = useState()
+  const [validation,setValidation] = useState()
+  const [cvv,setCvv] = useState()
+
+
   const total = products.reduce((total, product) => {
     return total + Number(product.price);
   }, 0);
+  const handleCheckout =useCallback(()=>{
+        if(cep && city && logradouro && number && neighborhood && uf && cardNumber && cardName && validation && cvv) {
+          history.push('/success')
+          toast.success('Pedido Realizado Com Sucesso')
+        }else {
+          toast.error('Error No Pedido, Tente Novamento Mais Tarde')
+        }
+  },[cep,city,logradouro,number,neighborhood,uf,cardNumber,cardName,validation,cvv,history])
   return (
     <div className="h-100">
       <Header hideCart />
@@ -21,7 +46,7 @@ const Checkout = () => {
                   type="text"
                   placeholder="CEP"
                   className="form-control form-control-lg"
-                  onChange={()=>{}}
+                  onChange={(e)=> setCep(e.target.value)}
                 />
               </div>
             </div>
@@ -31,7 +56,7 @@ const Checkout = () => {
                   type="text"
                   placeholder="Cidade"
                   className="form-control form-control-lg"
-                  onChange={()=>{}}
+                  onChange={(e)=> setCity(e.target.value)}
                 />
               </div>
               <div className="col-6 pl-0">
@@ -39,7 +64,7 @@ const Checkout = () => {
                   type="text"
                   placeholder="Logradouro"
                   className="form-control form-control-lg"
-                  onChange={()=>{}}
+                  onChange={(e)=> setLogradouro(e.target.value)}
                 />
               </div>
             </div>
@@ -49,7 +74,7 @@ const Checkout = () => {
                   type="text"
                   placeholder="Número"
                   className="form-control form-control-lg"
-                  onChange={()=>{}}
+                  onChange={(e)=> setNumber(e.target.value)}
                 />
               </div>
               <div className="col-5 pl-0">
@@ -57,7 +82,7 @@ const Checkout = () => {
                   type="text"
                   placeholder="Bairro"
                   className="form-control form-control-lg"
-                  onChange={()=>{}}
+                  onChange={(e)=> setNeighborhood(e.target.value)}
                 />
               </div>
               <div className="col-2 pl-0">
@@ -65,7 +90,7 @@ const Checkout = () => {
                   type="text"
                   placeholder="UF"
                   className="form-control form-control-lg"
-                  onChange={()=>{}}
+                  onChange={(e)=> setUf(e.target.value)}
                 />
               </div>
             </div>
@@ -77,7 +102,7 @@ const Checkout = () => {
                   type="text"
                   placeholder="Número do Cartão"
                   className="form-control form-control-lg"
-                  onChange={()=>{}}
+                  onChange={(e)=> setCardNumber(e.target.value)}
                 />
               </div>
               <div className="col-6 pl-0">
@@ -85,7 +110,7 @@ const Checkout = () => {
                   type="text"
                   placeholder="Nome no Cartão"
                   className="form-control form-control-lg"
-                  onChange={()=>{}}
+                  onChange={(e)=> setCardName(e.target.value)}
                 />
               </div>
             </div>
@@ -95,7 +120,7 @@ const Checkout = () => {
                   type="text"
                   placeholder="Validade"
                   className="form-control form-control-lg"
-                  onChange={()=>{}}
+                  onChange={(e)=> setValidation(e.target.value)}
                 />
               </div>
               <div className="col-6 pl-0">
@@ -103,7 +128,7 @@ const Checkout = () => {
                   type="text"
                   placeholder="CVV"
                   className="form-control form-control-lg"
-                  onChange={()=>{}}
+                  onChange={(e)=> setCvv(e.target.value)}
                 />
               </div>
             </div>
@@ -115,7 +140,7 @@ const Checkout = () => {
               </div>
               <div className="col-12">
                 <button
-                  onClick={() => {}}
+                  onClick={() => handleCheckout()}
                   className="btn btn-block btn-lg btn-primary"
                 >
                   Finalizar Compra
